@@ -9,71 +9,39 @@ exports.handler = async function (event) {
   }
 
   try {
-    const { prompt, imageDataUrl, apiKey } = JSON.parse(event.body || '{}');
-    const key = process.env.GEMINI_API_KEY || apiKey;
+    const { prompt } = JSON.parse(event.body || '{}');
 
-    if (!key) {
+    if (!prompt) {
       return {
         statusCode: 400,
         headers,
-        body: JSON.stringify({ error: 'Netlify 환경변수 GEMINI_API_KEY가 설정되지 않았습니다.' })
+        body: JSON.stringify({ error: '프롬프트가 비어 있습니다.' })
       };
     }
 
-    const parts = [{ text: prompt }];
+    const encodedPrompt = encodeURIComponent(prompt);
+    const seed = Math.floor(Math.random() * 1000000);
+    const imageUrl = `https://image.pollinations.ai/prompt/${encodedPrompt}?width=1024&height=768&seed=${seed}&nologo=true&model=flux`;
 
-    if (imageDataUrl) {
-      const match = imageDataUrl.match(/^data:(image\/[a-zA-Z0-9+.-]+);base64,(.+)$/);
-      if (match) {
-        parts.push({
-          inlineData: {
-            mimeType: match[1],
-            data: match[2]
-          }
-        });
-      }
-    }
-
-    const response = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-image:generateContent?key=${encodeURIComponent(key)}`,
-      {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          contents: [{ parts }],
-          generationConfig: {
-            responseModalities: ['IMAGE']
-          }
-        })
-      }
-    );
-
-    const data = await response.json();
+    const response = await fetch(imageUrl);
 
     if (!response.ok) {
       return {
         statusCode: response.status,
         headers,
-        body: JSON.stringify({ error: data.error?.message || `Gemini API 오류 (${response.status})` })
+        body: JSON.stringify({ error: `무료 이미지 서버 응답 오류 (${response.status})` })
       };
     }
 
-    const imgPart = data.candidates?.[0]?.content?.parts?.find((p) => p.inlineData);
-
-    if (!imgPart) {
-      return {
-        statusCode: 500,
-        headers,
-        body: JSON.stringify({ error: 'AI가 이미지를 생성하지 못했습니다. 다른 문구나 사진으로 다시 시도해 주세요.' })
-      };
-    }
+    const arrayBuffer = await response.arrayBuffer();
+    const base64 = Buffer.from(arrayBuffer).toString('base64');
 
     return {
       statusCode: 200,
       headers,
       body: JSON.stringify({
-        imageBase64: imgPart.inlineData.data,
-        mimeType: imgPart.inlineData.mimeType || 'image/png'
+        imageBase64: base64,
+        mimeType: 'image/jpeg'
       })
     };
   } catch (err) {
