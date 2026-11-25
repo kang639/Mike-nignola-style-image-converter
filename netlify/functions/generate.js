@@ -1,6 +1,11 @@
-export async function handler(event) {
+exports.handler = async function (event) {
+  const headers = {
+    'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin': '*'
+  };
+
   if (event.httpMethod !== 'POST') {
-    return { statusCode: 405, body: JSON.stringify({ error: 'Method Not Allowed' }) };
+    return { statusCode: 405, headers, body: JSON.stringify({ error: 'Method Not Allowed' }) };
   }
 
   try {
@@ -10,6 +15,7 @@ export async function handler(event) {
     if (!key) {
       return {
         statusCode: 400,
+        headers,
         body: JSON.stringify({ error: 'Netlify 환경변수 GEMINI_API_KEY가 설정되지 않았습니다.' })
       };
     }
@@ -17,7 +23,7 @@ export async function handler(event) {
     const parts = [{ text: prompt }];
 
     if (imageDataUrl) {
-      const match = imageDataUrl.match(/^data:(image\/\w+);base64,(.+)$/);
+      const match = imageDataUrl.match(/^data:(image\/[a-zA-Z0-9+.-]+);base64,(.+)$/);
       if (match) {
         parts.push({
           inlineData: {
@@ -47,7 +53,8 @@ export async function handler(event) {
     if (!response.ok) {
       return {
         statusCode: response.status,
-        body: JSON.stringify({ error: data.error?.message || 'Gemini API 호출 실패' })
+        headers,
+        body: JSON.stringify({ error: data.error?.message || `Gemini API 오류 (${response.status})` })
       };
     }
 
@@ -56,13 +63,14 @@ export async function handler(event) {
     if (!imgPart) {
       return {
         statusCode: 500,
-        body: JSON.stringify({ error: 'AI가 이미지를 생성하지 못했습니다. 다른 문구로 다시 시도해 주세요.' })
+        headers,
+        body: JSON.stringify({ error: 'AI가 이미지를 생성하지 못했습니다. 다른 문구나 사진으로 다시 시도해 주세요.' })
       };
     }
 
     return {
       statusCode: 200,
-      headers: { 'Content-Type': 'application/json' },
+      headers,
       body: JSON.stringify({
         imageBase64: imgPart.inlineData.data,
         mimeType: imgPart.inlineData.mimeType || 'image/png'
@@ -71,7 +79,8 @@ export async function handler(event) {
   } catch (err) {
     return {
       statusCode: 500,
+      headers,
       body: JSON.stringify({ error: err.message || '서버 내부 오류' })
     };
   }
-}
+};
