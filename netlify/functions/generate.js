@@ -9,7 +9,7 @@ exports.handler = async function (event) {
   }
 
   try {
-    const { prompt, imageDataUrl } = JSON.parse(event.body || '{}');
+    const { prompt, width = 1024, height = 768 } = JSON.parse(event.body || '{}');
 
     if (!prompt) {
       return {
@@ -19,38 +19,14 @@ exports.handler = async function (event) {
       };
     }
 
-    const seed = Math.floor(Math.random() * 1000000);
     const encodedPrompt = encodeURIComponent(prompt);
-    let targetUrl = `https://image.pollinations.ai/prompt/${encodedPrompt}?width=1024&height=768&seed=${seed}&nologo=true&model=flux`;
+    const seed = Math.floor(Math.random() * 1000000);
+    const safeW = Math.min(1280, Math.max(512, Number(width) || 1024));
+    const safeH = Math.min(1280, Math.max(512, Number(height) || 768));
 
-    // 원본 사진이 업로드된 경우: 임시 호스팅에 올린 뒤 Image-to-Image(kontext) 모델로 원본 구도 유지 변환
-    if (imageDataUrl) {
-      const match = imageDataUrl.match(/^data:(image\/[a-zA-Z0-9+.-]+);base64,(.+)$/);
-      if (match) {
-        const mimeType = match[1];
-        const ext = mimeType.split('/')[1] || 'jpg';
-        const buffer = Buffer.from(match[2], 'base64');
+    const imageUrl = `https://image.pollinations.ai/prompt/${encodedPrompt}?width=${safeW}&height=${safeH}&seed=${seed}&nologo=true&model=flux`;
 
-        const formData = new FormData();
-        formData.append('file', new Blob([buffer], { type: mimeType }), `upload.${ext}`);
-
-        const uploadRes = await fetch('https://tmpfiles.org/api/v1/upload', {
-          method: 'POST',
-          body: formData
-        });
-
-        if (uploadRes.ok) {
-          const uploadJson = await uploadRes.json();
-          const rawUrl = uploadJson?.data?.url;
-          if (rawUrl) {
-            const directImageUrl = rawUrl.replace('tmpfiles.org/', 'tmpfiles.org/dl/');
-            targetUrl = `https://image.pollinations.ai/prompt/${encodedPrompt}?model=kontext&image=${encodeURIComponent(directImageUrl)}&seed=${seed}&nologo=true`;
-          }
-        }
-      }
-    }
-
-    const response = await fetch(targetUrl);
+    const response = await fetch(imageUrl);
 
     if (!response.ok) {
       return {
