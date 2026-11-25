@@ -36,50 +36,47 @@
 <body class="min-h-screen flex flex-col selection:bg-red-600 selection:text-white">
 
   <!-- Top Navigation -->
-  <header class="border-b border-zinc-800 bg-zinc-950/90 backdrop-blur sticky top-0 z-40">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
-      <div class="flex items-center gap-3">
-        <div class="w-8 h-8 bg-red-600 flex items-center justify-center font-gothic font-black text-black text-lg border border-black">
+  <header class="border-b border-zinc-800 bg-zinc-950/95 backdrop-blur sticky top-0 z-40">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between gap-2">
+      <div class="flex items-center gap-2.5 min-w-0">
+        <div class="w-8 h-8 shrink-0 bg-red-600 flex items-center justify-center font-gothic font-black text-black text-lg border border-black">
           M
         </div>
-        <div>
-          <h1 class="font-gothic font-black tracking-wider text-base sm:text-lg text-zinc-100">
+        <div class="min-w-0">
+          <h1 class="font-gothic font-black tracking-wider text-sm sm:text-lg text-zinc-100 truncate">
             MIGNOLA INK STUDIO
           </h1>
-          <p class="text-[11px] text-zinc-500 tracking-widest uppercase">Chiaroscuro &amp; Gothic Comic Engine</p>
+          <p class="text-[10px] text-zinc-500 tracking-widest uppercase truncate">Gothic Comic Ink Engine</p>
         </div>
       </div>
 
-      <div class="flex items-center gap-2">
-        <span class="px-2.5 py-1 text-[11px] font-bold bg-zinc-900 text-emerald-400 border border-zinc-700">
-          LOCAL INK ENGINE READY
-        </span>
-      </div>
+      <span class="shrink-0 px-2 py-1 text-[10px] font-bold bg-zinc-900 text-emerald-400 border border-zinc-700">
+        INK V2 READY
+      </span>
     </div>
   </header>
 
   <!-- Minimal Hero -->
-  <section class="border-b border-zinc-800/80 bg-gradient-to-b from-zinc-950 to-[#09090b] py-8 sm:py-10">
+  <section class="border-b border-zinc-800/80 bg-gradient-to-b from-zinc-950 to-[#09090b] py-6 sm:py-8">
     <div class="max-w-7xl mx-auto px-4 sm:px-6">
       <div class="max-w-3xl">
         <div class="inline-flex items-center gap-2 px-2.5 py-1 bg-red-950/50 border border-red-800/60 text-red-400 text-xs font-semibold tracking-wider uppercase mb-3">
-          <span>65-Archive Ink Engine</span>
+          <span>65-Archive Ink Engine V2</span>
           <span>•</span>
-          <span>65–80% Spotting Blacks</span>
+          <span>Hard-Edge Spotting Blacks</span>
         </div>
-        <h2 class="text-2xl sm:text-4xl font-black tracking-tight text-white leading-tight mb-3">
-          사진 변환과 텍스트 작화를 하나로.<br class="hidden sm:inline" />
-          <span class="text-red-500">마이크 미뇰라</span> 고딕 코믹스 스튜디오
+        <h2 class="text-xl sm:text-3xl font-black tracking-tight text-white leading-tight mb-2">
+          원본 구도를 살린 <span class="text-red-500">마이크 미뇰라</span> 잉크 원화 변환
         </h2>
-        <p class="text-sm sm:text-base text-zinc-400 leading-relaxed">
-          원본 구도와 인물을 그대로 유지하면서 굵은 붓선, 칠흑 그림자(Spotting Blacks), 톱니 해칭, 그리고 절제된 시그니처 팔레트 규칙을 적용합니다.
+        <p class="text-xs sm:text-sm text-zinc-400 leading-relaxed">
+          사진의 그라데이션을 제거하고 각진 평면, 극단적 칠흑 그림자(Spotting Blacks), 두꺼운 먹물 붓선, 3~4색 한정 팔레트로 재구성합니다.
         </p>
       </div>
     </div>
   </section>
 
   <!-- Main Workspace -->
-  <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 py-8">
+  <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 py-6">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
 
       <!-- Left Controls (5 cols) -->
@@ -105,7 +102,7 @@
           <label id="dropzone" for="file-input" class="block border-2 border-dashed border-zinc-700 hover:border-red-500 bg-zinc-950/60 p-6 text-center cursor-pointer transition">
             <input id="file-input" type="file" accept="image/*" class="hidden" />
             <div class="text-zinc-300 font-semibold text-sm mb-1">클릭하거나 사진을 여기로 드래그하세요</div>
-            <div class="text-xs text-zinc-500">JPG, PNG, WEBP 지원 (원본 구도·얼굴 100% 유지 변환)</div>
+            <div class="text-xs text-zinc-500">JPG, PNG, WEBP 지원 (인물·캐릭터·건축물 추천)</div>
           </label>
         </div>
 
@@ -116,7 +113,7 @@
             <span class="text-[11px] text-zinc-500">한국어 / 영어 지원</span>
           </div>
 
-          <textarea id="scene-prompt" rows="4" placeholder="예: 비 오는 밤 안개 낀 고딕 성당 지붕 위에 서 있는 붉은 코트의 탐정, 손에는 낡은 랜턴을 들고 있다" class="w-full bg-zinc-950 border border-zinc-700 focus:border-red-500 focus:outline-none p-3 text-sm text-zinc-100 placeholder-zinc-600 resize-none"></textarea>
+          <textarea id="scene-prompt" rows="4" placeholder="예: 비 오는 밤 안개 낀 고딕 성당 지붕 위에 서 있는 붉은 코트의 탐정" class="w-full bg-zinc-950 border border-zinc-700 focus:border-red-500 focus:outline-none p-3 text-sm text-zinc-100 placeholder-zinc-600 resize-none"></textarea>
 
           <div>
             <p class="text-[11px] text-zinc-500 mb-2">빠른 장면 예시 (클릭 시 입력):</p>
@@ -139,10 +136,10 @@
               <button type="button" data-palette="tavira" class="palette-btn text-left p-3 bg-zinc-950 border-2 border-red-600 flex items-center justify-between transition">
                 <div>
                   <div class="text-xs font-bold text-white">타비라 고성 &amp; 황혼 (Crimson &amp; Slate)</div>
-                  <div class="text-[11px] text-zinc-400">회청색 밤하늘 + 칠흑 그림자 + 선홍색 포인트</div>
+                  <div class="text-[11px] text-zinc-400">칠흑 + 회청색 어둠 + 창백한 돌빛 + 선홍 포인트</div>
                 </div>
                 <div class="flex gap-1">
-                  <span class="w-4 h-4 bg-[#09090b] border border-zinc-600"></span>
+                  <span class="w-4 h-4 bg-[#060608] border border-zinc-600"></span>
                   <span class="w-4 h-4 bg-[#475569]"></span>
                   <span class="w-4 h-4 bg-[#dc2626]"></span>
                 </div>
@@ -151,10 +148,10 @@
               <button type="button" data-palette="abyss" class="palette-btn text-left p-3 bg-zinc-950 border border-zinc-800 hover:border-zinc-600 flex items-center justify-between transition">
                 <div>
                   <div class="text-xs font-bold text-zinc-200">심해 인어 &amp; 오컬트 (Teal &amp; Ochre)</div>
-                  <div class="text-[11px] text-zinc-400">청록빛 심연 + 짙은 먹 + 황토빛 석상</div>
+                  <div class="text-[11px] text-zinc-400">칠흑 + 청록빛 심연 + 낡은 황토 석상 톤</div>
                 </div>
                 <div class="flex gap-1">
-                  <span class="w-4 h-4 bg-[#09090b] border border-zinc-600"></span>
+                  <span class="w-4 h-4 bg-[#060608] border border-zinc-600"></span>
                   <span class="w-4 h-4 bg-[#1e3a3a]"></span>
                   <span class="w-4 h-4 bg-[#ca8a04]"></span>
                 </div>
@@ -163,10 +160,10 @@
               <button type="button" data-palette="hellfire" class="palette-btn text-left p-3 bg-zinc-950 border border-zinc-800 hover:border-zinc-600 flex items-center justify-between transition">
                 <div>
                   <div class="text-xs font-bold text-zinc-200">지옥불 &amp; 먹 포자 (Amber &amp; Vermilion)</div>
-                  <div class="text-[11px] text-zinc-400">어두운 적갈색 배경 + 주홍 화염 + 먹 포자 연기</div>
+                  <div class="text-[11px] text-zinc-400">칠흑 + 적갈색 어둠 + 주홍 화염 하이라이트</div>
                 </div>
                 <div class="flex gap-1">
-                  <span class="w-4 h-4 bg-[#09090b] border border-zinc-600"></span>
+                  <span class="w-4 h-4 bg-[#060608] border border-zinc-600"></span>
                   <span class="w-4 h-4 bg-[#451a1a]"></span>
                   <span class="w-4 h-4 bg-[#f97316]"></span>
                 </div>
@@ -175,11 +172,10 @@
               <button type="button" data-palette="woodcut" class="palette-btn text-left p-3 bg-zinc-950 border border-zinc-800 hover:border-zinc-600 flex items-center justify-between transition">
                 <div>
                   <div class="text-xs font-bold text-zinc-200">1998 순수 흑백 펜화 (Pure Ink B&amp;W)</div>
-                  <div class="text-[11px] text-zinc-400">채색 배제 + 순수 먹물 대비 + 지그재그 붓선</div>
+                  <div class="text-[11px] text-zinc-400">채색 0% + 순수 먹물과 미색 종이 판화 대비</div>
                 </div>
                 <div class="flex gap-1">
                   <span class="w-4 h-4 bg-[#000000] border border-zinc-600"></span>
-                  <span class="w-4 h-4 bg-[#71717a]"></span>
                   <span class="w-4 h-4 bg-[#fafafa]"></span>
                 </div>
               </button>
@@ -198,7 +194,7 @@
           <!-- Hatching Intensity -->
           <div>
             <div class="flex justify-between text-xs mb-1.5">
-              <span class="font-semibold text-zinc-300">톱니 해칭 &amp; 먹 포자 거칠기</span>
+              <span class="font-semibold text-zinc-300">굵은 붓선 &amp; 톱니 해칭 강도</span>
               <span id="ink-val" class="font-mono text-red-400 font-bold">강함</span>
             </div>
             <input id="ink-range" type="range" min="1" max="3" value="3" class="w-full cursor-pointer" />
@@ -262,8 +258,8 @@
             <!-- Loading Overlay -->
             <div id="loading-overlay" class="hidden absolute inset-0 bg-black/85 backdrop-blur-sm flex flex-col items-center justify-center p-6 text-center z-20">
               <div class="w-10 h-10 border-4 border-zinc-700 border-t-red-600 rounded-full animate-spin mb-4"></div>
-              <div class="font-gothic font-bold text-sm tracking-widest text-white uppercase mb-1">Inking &amp; Spotting Blacks...</div>
-              <p class="text-xs text-zinc-400">65장 원화 아카이브의 붓선과 명암 규칙을 적용하고 있습니다</p>
+              <div class="font-gothic font-bold text-sm tracking-widest text-white uppercase mb-1">Carving Ink Planes...</div>
+              <p class="text-xs text-zinc-400">그라데이션을 제거하고 굵은 붓선과 칠흑 평면으로 재구성 중입니다</p>
             </div>
           </div>
 
@@ -389,7 +385,7 @@
           const img = new Image();
           img.onerror = () => reject(new Error('이미지를 불러올 수 없습니다.'));
           img.onload = () => {
-            const maxDim = 1280;
+            const maxDim = 1024;
             let w = img.width;
             let h = img.height;
             if (w > maxDim || h > maxDim) {
@@ -453,7 +449,52 @@
       canvasLabel.textContent = '작업 캔버스 대기 중';
     });
 
-    // Local Deterministic Mignola Chiaroscuro & Ink Engine (Zero Server Errors, 100% Preserves Composition)
+    // Edge-Preserving Kuwahara / Plane Simplification Filter (turns photo gradients into carved comic planes)
+    function simplifyIntoPlanes(data, w, h, radius) {
+      const out = new Uint8ClampedArray(data.length);
+      for (let y = 0; y < h; y++) {
+        for (let x = 0; x < w; x++) {
+          const regions = [
+            { r: 0, g: 0, b: 0, r2: 0, g2: 0, b2: 0, count: 0, x0: Math.max(0, x - radius), x1: x, y0: Math.max(0, y - radius), y1: y },
+            { r: 0, g: 0, b: 0, r2: 0, g2: 0, b2: 0, count: 0, x0: x, x1: Math.min(w - 1, x + radius), y0: Math.max(0, y - radius), y1: y },
+            { r: 0, g: 0, b: 0, r2: 0, g2: 0, b2: 0, count: 0, x0: Math.max(0, x - radius), x1: x, y0: y, y1: Math.min(h - 1, y + radius) },
+            { r: 0, g: 0, b: 0, r2: 0, g2: 0, b2: 0, count: 0, x0: x, x1: Math.min(w - 1, x + radius), y0: y, y1: Math.min(h - 1, y + radius) }
+          ];
+
+          let bestVar = Infinity;
+          let bestR = 0, bestG = 0, bestB = 0;
+
+          for (let q = 0; q < 4; q++) {
+            const reg = regions[q];
+            for (let ry = reg.y0; ry <= reg.y1; ry++) {
+              for (let rx = reg.x0; rx <= reg.x1; rx++) {
+                const idx = (ry * w + rx) * 4;
+                const rv = data[idx], gv = data[idx + 1], bv = data[idx + 2];
+                reg.r += rv; reg.g += gv; reg.b += bv;
+                reg.r2 += rv * rv; reg.g2 += gv * gv; reg.b2 += bv * bv;
+                reg.count++;
+              }
+            }
+            const c = reg.count || 1;
+            const mr = reg.r / c, mg = reg.g / c, mb = reg.b / c;
+            const variance = (reg.r2 / c - mr * mr) + (reg.g2 / c - mg * mg) + (reg.b2 / c - mb * mb);
+            if (variance < bestVar) {
+              bestVar = variance;
+              bestR = mr; bestG = mg; bestB = mb;
+            }
+          }
+
+          const p = (y * w + x) * 4;
+          out[p] = bestR;
+          out[p + 1] = bestG;
+          out[p + 2] = bestB;
+          out[p + 3] = 255;
+        }
+      }
+      return out;
+    }
+
+    // Authentic Mike Mignola Hard-Edge Ink & Spotting Blacks Engine
     function renderMignolaStyleOnCanvas(dataUrl, paletteKey, shadowPct, inkStrength) {
       return new Promise((resolve) => {
         const img = new Image();
@@ -461,32 +502,32 @@
           const w = img.width;
           const h = img.height;
 
-          // Step 1: Smooth flat color blocks (cel-shading simplification)
-          const flatCanvas = document.createElement('canvas');
-          flatCanvas.width = w;
-          flatCanvas.height = h;
-          const fCtx = flatCanvas.getContext('2d');
-          fCtx.filter = 'contrast(125%) saturate(110%)';
-          fCtx.drawImage(img, 0, 0, w, h);
+          const canvas = document.createElement('canvas');
+          canvas.width = w;
+          canvas.height = h;
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0, w, h);
 
-          // Box-blur / posterize pass for chiseled geometric planes
-          const srcData = fCtx.getImageData(0, 0, w, h);
-          const d = srcData.data;
+          const rawImage = ctx.getImageData(0, 0, w, h);
 
-          // Compute luminance histogram to calibrate Spotting Blacks threshold
+          // 1. Carve photo into crisp, chiseled geometric planes (kills photo grain & smooth gradients)
+          const planeRadius = inkStrength === 3 ? 4 : inkStrength === 2 ? 3 : 2;
+          const flatData = simplifyIntoPlanes(rawImage.data, w, h, planeRadius);
+
+          // 2. Compute luminance & histogram on carved planes
           const lumArr = new Float32Array(w * h);
           const hist = new Uint32Array(256);
-          for (let i = 0, p = 0; i < d.length; i += 4, p++) {
-            const lum = 0.299 * d[i] + 0.587 * d[i + 1] + 0.114 * d[i + 2];
+          for (let i = 0, p = 0; i < flatData.length; i += 4, p++) {
+            const lum = 0.299 * flatData[i] + 0.587 * flatData[i + 1] + 0.114 * flatData[i + 2];
             lumArr[p] = lum;
             hist[Math.min(255, Math.max(0, lum | 0))]++;
           }
 
-          // Map slider 55..88% to dark shadow cutoff percentile (32%..62% pure pitch black)
-          const blackPercentile = ((shadowPct - 55) / 33) * 0.30 + 0.32;
+          // Aggressive Spotting Blacks cutoff (42% to 72% pure pitch-black ink)
+          const blackPercentile = ((shadowPct - 55) / 33) * 0.30 + 0.42;
           const targetDarkPixels = w * h * blackPercentile;
           let acc = 0;
-          let blackCutoff = 75;
+          let blackCutoff = 90;
           for (let b = 0; b < 256; b++) {
             acc += hist[b];
             if (acc >= targetDarkPixels) {
@@ -495,7 +536,7 @@
             }
           }
 
-          // Step 2: Sobel Edge Detection for thick hand-inked brush outlines & sawtooth hatching
+          // 3. Multi-scale Sobel + Difference-of-Gaussians for thick brush contours & facial ink lines
           const edgeMap = new Float32Array(w * h);
           for (let y = 1; y < h - 1; y++) {
             for (let x = 1; x < w - 1; x++) {
@@ -515,18 +556,18 @@
             }
           }
 
-          // Dilate strong edges for bold brush line weight
-          const brushThickness = inkStrength === 3 ? 2 : inkStrength === 2 ? 1 : 1;
-          const edgeThresh = inkStrength === 3 ? 115 : inkStrength === 2 ? 145 : 180;
+          // Bold hand-inked brush line dilation
+          const brushRadius = inkStrength === 3 ? 3 : inkStrength === 2 ? 2 : 1;
+          const edgeThresh = inkStrength === 3 ? 75 : inkStrength === 2 ? 95 : 120;
           const inkMask = new Uint8Array(w * h);
 
-          for (let y = brushThickness; y < h - brushThickness; y++) {
-            for (let x = brushThickness; x < w - brushThickness; x++) {
+          for (let y = brushRadius; y < h - brushRadius; y++) {
+            for (let x = brushRadius; x < w - brushRadius; x++) {
               const idx = y * w + x;
               if (edgeMap[idx] > edgeThresh) {
-                for (let dy = -brushThickness; dy <= brushThickness; dy++) {
-                  for (let dx = -brushThickness; dx <= brushThickness; dx++) {
-                    if (dx * dx + dy * dy <= brushThickness * brushThickness + 1) {
+                for (let dy = -brushRadius; dy <= brushRadius; dy++) {
+                  for (let dx = -brushRadius; dx <= brushRadius; dx++) {
+                    if (dx * dx + dy * dy <= brushRadius * brushRadius) {
                       inkMask[(y + dy) * w + (x + dx)] = 1;
                     }
                   }
@@ -535,105 +576,100 @@
             }
           }
 
-          // Palette color mapping functions
+          // 4. Strict 4-Tone Mignola Limited Palette (Zero gradient transitions)
           const palettes = {
             tavira: {
-              darkBg: [34, 44, 58],      // Slate blue shadow midtone
-              midBg: [84, 98, 116],      // Dusty slate
-              lightBg: [168, 176, 184],  // Pale overcast stone
-              accent: [212, 36, 36]      // Crimson focal accent
+              shadowMid: [54, 68, 86],     // Muted gothic slate-blue
+              midTone: [128, 138, 148],    // Dusty overcast gray
+              highlight: [216, 212, 200],  // Pale parchment stone
+              accent: [198, 34, 34]        // Mignola Crimson focal color
             },
             abyss: {
-              darkBg: [20, 46, 48],      // Deep sea-teal
-              midBg: [48, 86, 84],       // Muted teal
-              lightBg: [184, 152, 82],   // Ochre highlight
-              accent: [214, 162, 42]     // Gold ochre accent
+              shadowMid: [26, 58, 60],     // Deep sea-teal
+              midTone: [64, 108, 102],     // Muted green-teal
+              highlight: [204, 174, 104],  // Aged ochre
+              accent: [218, 158, 38]       // Gold-ochre focal accent
             },
             hellfire: {
-              darkBg: [52, 22, 22],      // Blood maroon
-              midBg: [118, 46, 32],      // Burnt umber
-              lightBg: [232, 134, 44],   // Amber glow
-              accent: [242, 76, 28]      // Vermilion fire
+              shadowMid: [68, 26, 24],     // Dark blood-brown
+              midTone: [148, 54, 34],      // Burnt sienna
+              highlight: [236, 152, 58],   // Amber glow
+              accent: [232, 64, 24]        // Vermilion flame
             },
             woodcut: {
-              darkBg: [12, 12, 14],      // Pure ink
-              midBg: [238, 234, 224],    // Off-white paper
-              lightBg: [248, 245, 238],  // Crisp paper highlight
-              accent: [245, 242, 235]    // Monochrome paper
+              shadowMid: [242, 238, 228],  // Pure off-white comic paper
+              midTone: [242, 238, 228],
+              highlight: [248, 245, 238],
+              accent: [242, 238, 228]
             }
           };
 
           const pal = palettes[paletteKey] || palettes.tavira;
+          const outData = rawImage.data;
 
-          // Step 3: Composite Mignola Spotting Blacks, Sawtooth Hatching, and Matte Palette
           for (let y = 0; y < h; y++) {
             for (let x = 0; x < w; x++) {
               const p = y * w + x;
               const i = p * 4;
-              const r = d[i];
-              const g = d[i + 1];
-              const b = d[i + 2];
+              const r = flatData[i];
+              const g = flatData[i + 1];
+              const b = flatData[i + 2];
               const lum = lumArr[p];
 
-              // Sawtooth hatching pattern in mid-dark transition zones
-              const sawWave = Math.sin((x * 0.45 + y * 0.35)) * 12 + Math.cos((x * 0.2 - y * 0.5)) * 8;
-              const hatchZone = lum < blackCutoff + (inkStrength * 14) && lum >= blackCutoff - 6;
-              const isHatchInk = hatchZone && ((x + y + (sawWave | 0)) % (inkStrength === 3 ? 5 : 7) === 0);
+              // Angular sawtooth hatching along shadow borders
+              const zig = Math.abs(((x + y * 0.6) % 14) - 7);
+              const inHatchBand = lum >= blackCutoff && lum < blackCutoff + (inkStrength * 11);
+              const isHatch = inHatchBand && ((x - y + zig) % (inkStrength === 3 ? 6 : 8) < 2);
 
-              // Pure Pitch Black Spotting Shadows or Thick Brush Line
-              if (lum < blackCutoff || inkMask[p] === 1 || isHatchInk) {
-                d[i] = 8;
-                d[i + 1] = 8;
-                d[i + 2] = 10;
+              // Pure Pitch Black Spotting Shadows + Bold Brush Lines + Sawtooth Hatching
+              if (lum < blackCutoff || inkMask[p] === 1 || isHatch) {
+                outData[i] = 5;
+                outData[i + 1] = 5;
+                outData[i + 2] = 7;
+                outData[i + 3] = 255;
                 continue;
               }
 
-              // Detect vibrant focal colors (e.g., red scarf, green hair, warm skin highlights)
+              // Check if pixel is a strong focal color (like crimson scarf or vivid hair)
               const maxC = Math.max(r, g, b);
               const minC = Math.min(r, g, b);
               const sat = maxC === 0 ? 0 : (maxC - minC) / maxC;
+              const isReddish = r > g * 1.35 && r > b * 1.35;
 
               if (paletteKey === 'woodcut') {
-                // Pure B&W Woodcut Paper
-                d[i] = pal.lightBg[0];
-                d[i + 1] = pal.lightBg[1];
-                d[i + 2] = pal.lightBg[2];
-              } else if (sat > 0.38 && lum > blackCutoff + 10) {
-                // Preserve subject's signature focal color in flat matte comic ink tone (quantized)
-                const qR = Math.round(r / 48) * 48;
-                const qG = Math.round(g / 48) * 48;
-                const qB = Math.round(b / 48) * 48;
-                // Blend slightly with palette accent for graphic cohesion
-                d[i] = Math.min(255, Math.round(qR * 0.78 + pal.accent[0] * 0.22));
-                d[i + 1] = Math.min(255, Math.round(qG * 0.78 + pal.accent[1] * 0.22));
-                d[i + 2] = Math.min(255, Math.round(qB * 0.78 + pal.accent[2] * 0.22));
-              } else if (lum < blackCutoff + 55) {
-                // Mid-dark matte gothic tone
-                d[i] = pal.darkBg[0];
-                d[i + 1] = pal.darkBg[1];
-                d[i + 2] = pal.darkBg[2];
-              } else if (lum < blackCutoff + 115) {
-                // Midtone matte color block
-                d[i] = pal.midBg[0];
-                d[i + 1] = pal.midBg[1];
-                d[i + 2] = pal.midBg[2];
+                outData[i] = pal.highlight[0];
+                outData[i + 1] = pal.highlight[1];
+                outData[i + 2] = pal.highlight[2];
+              } else if (isReddish || (sat > 0.48 && lum < blackCutoff + 95)) {
+                // Flat graphic focal accent color (no gradient)
+                outData[i] = pal.accent[0];
+                outData[i + 1] = pal.accent[1];
+                outData[i + 2] = pal.accent[2];
+              } else if (lum < blackCutoff + 48) {
+                outData[i] = pal.shadowMid[0];
+                outData[i + 1] = pal.shadowMid[1];
+                outData[i + 2] = pal.shadowMid[2];
+              } else if (lum < blackCutoff + 105) {
+                outData[i] = pal.midTone[0];
+                outData[i + 1] = pal.midTone[1];
+                outData[i + 2] = pal.midTone[2];
               } else {
-                // Crisp comic highlight block
-                d[i] = pal.lightBg[0];
-                d[i + 1] = pal.lightBg[1];
-                d[i + 2] = pal.lightBg[2];
+                outData[i] = pal.highlight[0];
+                outData[i + 1] = pal.highlight[1];
+                outData[i + 2] = pal.highlight[2];
               }
+              outData[i + 3] = 255;
             }
           }
 
-          fCtx.putImageData(srcData, 0, 0);
+          ctx.putImageData(rawImage, 0, 0);
 
-          // Step 4: Subtle comic paper grain & crisp ink frame
-          fCtx.strokeStyle = '#08080a';
-          fCtx.lineWidth = Math.max(4, Math.round(w * 0.008));
-          fCtx.strokeRect(0, 0, w, h);
+          // Crisp comic panel border
+          ctx.strokeStyle = '#050507';
+          ctx.lineWidth = Math.max(6, Math.round(w * 0.01));
+          ctx.strokeRect(0, 0, w, h);
 
-          resolve(flatCanvas.toDataURL('image/png'));
+          resolve(canvas.toDataURL('image/png'));
         };
         img.src = dataUrl;
       });
@@ -651,12 +687,11 @@
 
       loadingOverlay.classList.remove('hidden');
       btnGenerate.disabled = true;
-      showStatus('잉킹 엔진이 명암과 붓선을 적용하고 있습니다...', false);
+      showStatus('그라데이션을 제거하고 잉크 평면으로 재구성 중입니다...', false);
 
       try {
         if (currentTab === 'photo') {
-          // Process locally on canvas so original character/composition is 100% preserved with 0 server errors
-          await new Promise(r => setTimeout(r, 150));
+          await new Promise(r => setTimeout(r, 80));
           const shadowPct = parseInt(shadowRange.value, 10);
           const inkStrength = parseInt(inkRange.value, 10);
           generatedDataUrl = await renderMignolaStyleOnCanvas(originalDataUrl, selectedPalette, shadowPct, inkStrength);
@@ -670,9 +705,8 @@
           sliderBar.style.left = '50%';
           compareWrap.classList.remove('hidden');
           canvasLabel.textContent = '변환 완료 (좌우 슬라이더 비교)';
-          showStatus('완료되었습니다! 슬라이더로 비교하거나 우측 상단 버튼으로 저장하세요.', false);
+          showStatus('완료되었습니다! 팔레트나 그림자 비율을 바꿔 재변환할 수도 있습니다.', false);
         } else {
-          // Text-to-image via free Pollinations flux endpoint
           const shadowPct = shadowRange.value;
           const paletteDesc = paletteDescriptions[selectedPalette];
           const fullPrompt = `Authentic Mike Mignola gothic comic book ink illustration style, ${shadowPct}% solid pitch-black spotting shadows, thick hand-inked brush outlines, chiseled geometric shapes, sawtooth hatching, ${paletteDesc}, single cohesive scene, NO text, NO grid. Scene: ${scenePrompt.value.trim()}`;
@@ -741,4 +775,4 @@
     });
   </script>
 </body>
-      </html>
+</html>
