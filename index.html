@@ -45,12 +45,12 @@
           <h1 class="font-gothic font-black tracking-wider text-sm sm:text-lg text-zinc-100 truncate">
             MIGNOLA INK STUDIO
           </h1>
-          <p class="text-[10px] text-zinc-500 tracking-widest uppercase truncate">Simplified Form &amp; Flat Ink Engine</p>
+          <p class="text-[10px] text-zinc-500 tracking-widest uppercase truncate">Gothic Comic Art &amp; Prompt Engine</p>
         </div>
       </div>
 
-      <span class="shrink-0 px-2 py-1 text-[10px] font-bold bg-zinc-900 text-emerald-400 border border-zinc-700">
-        FLAT-INK V3
+      <span class="shrink-0 px-2.5 py-1 text-[10px] font-bold bg-zinc-900 text-red-400 border border-zinc-700">
+        FREE FLUX INK ENGINE
       </span>
     </div>
   </header>
@@ -60,15 +60,15 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6">
       <div class="max-w-3xl">
         <div class="inline-flex items-center gap-2 px-2.5 py-1 bg-red-950/50 border border-red-800/60 text-red-400 text-xs font-semibold tracking-wider uppercase mb-3">
-          <span>Simplified Form Engine</span>
+          <span>Chiaroscuro Comic Generator</span>
           <span>•</span>
-          <span>Clean Lines &amp; Flat Cel-Colors</span>
+          <span>Simplified Form &amp; Flat Palette</span>
         </div>
         <h2 class="text-xl sm:text-3xl font-black tracking-tight text-white leading-tight mb-2">
-          형태는 단순하게, 명암과 색은 <span class="text-red-500">딱 떨어지는 단색</span>으로
+          형태는 단순하게, 명암과 색은 <span class="text-red-500">마이크 미뇰라</span> 원화처럼
         </h2>
         <p class="text-xs sm:text-sm text-zinc-400 leading-relaxed">
-          자잘한 노이즈와 해칭을 걷어내고, 큰 도형적 명암(Spotting Blacks)·깔끔한 외곽 펜선·차분한 3색 무광 팔레트로 형태감만 남깁니다.
+          각진 도형적 단순화, 깔끔한 검은 펜선, 화면을 압도하는 칠흑 그림자(Spotting Blacks), 절제된 3색 무광 채색 규칙으로 고화질 원화 일러스트를 생성합니다.
         </p>
       </div>
     </div>
@@ -83,54 +83,93 @@
 
         <!-- Mode Switcher Tabs -->
         <div class="grid grid-cols-2 bg-zinc-900 p-1 border border-zinc-800">
-          <button type="button" id="tab-photo" class="py-2.5 text-xs sm:text-sm font-bold bg-red-600 text-white transition">
-            사진 업로드 변환
+          <button type="button" id="tab-text" class="py-2.5 text-xs sm:text-sm font-bold bg-red-600 text-white transition">
+            AI 원화 일러스트 생성
           </button>
-          <button type="button" id="tab-text" class="py-2.5 text-xs sm:text-sm font-bold text-zinc-400 hover:text-white transition">
-            텍스트로 새로 그리기
+          <button type="button" id="tab-photo" class="py-2.5 text-xs sm:text-sm font-bold text-zinc-400 hover:text-white transition">
+            사진 변환용 프롬프트 빌더
           </button>
         </div>
 
-        <!-- Panel A: Photo Upload -->
-        <div id="panel-photo" class="bg-zinc-900/70 p-5 comic-border space-y-4">
+        <!-- Panel A: Text-to-Image AI Generator -->
+        <div id="panel-text" class="bg-zinc-900/70 p-5 comic-border space-y-4">
           <div class="flex items-center justify-between">
-            <span class="text-xs font-bold uppercase tracking-wider text-zinc-400">01. 원본 사진 선택</span>
-            <button type="button" id="btn-clear-photo" class="hidden text-xs text-red-400 hover:underline">사진 지우기</button>
+            <span class="text-xs font-bold uppercase tracking-wider text-zinc-400">01. 그릴 장면 묘사</span>
+            <span class="text-[11px] text-zinc-500">영어 묘사 시 정확도 최고</span>
           </div>
 
-          <label id="dropzone" for="file-input" class="block border-2 border-dashed border-zinc-700 hover:border-red-500 bg-zinc-950/60 p-6 text-center cursor-pointer transition">
-            <input id="file-input" type="file" accept="image/*" class="hidden" />
-            <div class="text-zinc-300 font-semibold text-sm mb-1">클릭하거나 사진을 여기로 드래그하세요</div>
-            <div class="text-xs text-zinc-500">JPG, PNG, WEBP 지원 (단순화된 도형·명암 변환)</div>
-          </label>
-        </div>
-
-        <!-- Panel B: Text-to-Image Prompt -->
-        <div id="panel-text" class="hidden bg-zinc-900/70 p-5 comic-border space-y-4">
-          <div class="flex items-center justify-between">
-            <span class="text-xs font-bold uppercase tracking-wider text-zinc-400">01. 그릴 장면 텍스트 입력</span>
-            <span class="text-[11px] text-zinc-500">한국어 / 영어 지원</span>
-          </div>
-
-          <textarea id="scene-prompt" rows="4" placeholder="예: 비 오는 밤 안개 낀 고딕 성당 지붕 위에 서 있는 붉은 코트의 탐정" class="w-full bg-zinc-950 border border-zinc-700 focus:border-red-500 focus:outline-none p-3 text-sm text-zinc-100 placeholder-zinc-600 resize-none"></textarea>
+          <textarea id="scene-prompt" rows="4" placeholder="예: A weary detective with green hair and a red scarf standing in a shadowed gothic hallway, moody chiaroscuro" class="w-full bg-zinc-950 border border-zinc-700 focus:border-red-500 focus:outline-none p-3 text-sm text-zinc-100 placeholder-zinc-600 resize-none"></textarea>
 
           <div>
-            <p class="text-[11px] text-zinc-500 mb-2">빠른 장면 예시 (클릭 시 입력):</p>
+            <p class="text-[11px] text-zinc-500 mb-2">원화 스타일 추천 장면 (클릭 시 자동 입력):</p>
             <div class="flex flex-wrap gap-1.5">
-              <button type="button" class="prompt-chip text-[11px] px-2.5 py-1 bg-zinc-800 hover:bg-zinc-700 text-zinc-300 border border-zinc-700 transition" data-prompt="foggy medieval stone castle wall and gallows silhouette at night with crimson cloak figure">중세 성벽과 붉은 실루엣</button>
-              <button type="button" class="prompt-chip text-[11px] px-2.5 py-1 bg-zinc-800 hover:bg-zinc-700 text-zinc-300 border border-zinc-700 transition" data-prompt="dark underground catacomb occult investigator holding three candles facing stone skull statue">지하 납골당과 촛불</button>
-              <button type="button" class="prompt-chip text-[11px] px-2.5 py-1 bg-zinc-800 hover:bg-zinc-700 text-zinc-300 border border-zinc-700 transition" data-prompt="stormy cold slate-blue sea cliff with ancient byzantine monastery">해안 절벽 수도원</button>
+              <button type="button" class="prompt-chip text-[11px] px-2.5 py-1 bg-zinc-800 hover:bg-zinc-700 text-zinc-300 border border-zinc-700 transition" data-prompt="a towering trench-coated occult investigator standing before foggy medieval stone castle ruins under a pale moon">고딕 성터와 조사관</button>
+              <button type="button" class="prompt-chip text-[11px] px-2.5 py-1 bg-zinc-800 hover:bg-zinc-700 text-zinc-300 border border-zinc-700 transition" data-prompt="a hooded spectral phantom holding a single flickering flame in a dark cobblestone alley at night">골목의 유령과 불꽃</button>
+              <button type="button" class="prompt-chip text-[11px] px-2.5 py-1 bg-zinc-800 hover:bg-zinc-700 text-zinc-300 border border-zinc-700 transition" data-prompt="close-up portrait of a stern man with green hair and crimson scarf, half face drowned in pitch black shadow">녹색 머리 캐릭터 초상화</button>
+              <button type="button" class="prompt-chip text-[11px] px-2.5 py-1 bg-zinc-800 hover:bg-zinc-700 text-zinc-300 border border-zinc-700 transition" data-prompt="ancient stone bridge over dark abyssal water with submerged silhouettes and drifting ink smoke">심연 위의 돌다리</button>
+            </div>
+          </div>
+
+          <!-- Aspect Ratio Selector -->
+          <div>
+            <label class="text-xs font-semibold text-zinc-300 block mb-2">캔버스 비율</label>
+            <div class="grid grid-cols-3 gap-2">
+              <button type="button" data-ratio="4:3" data-w="1024" data-h="768" class="ratio-btn py-2 text-xs font-bold bg-zinc-950 border-2 border-red-600 text-white transition">
+                가로 (4:3)
+              </button>
+              <button type="button" data-ratio="3:4" data-w="768" data-h="1024" class="ratio-btn py-2 text-xs font-bold bg-zinc-950 border border-zinc-800 text-zinc-400 hover:text-white transition">
+                코믹스 세로 (3:4)
+              </button>
+              <button type="button" data-ratio="1:1" data-w="1024" data-h="1024" class="ratio-btn py-2 text-xs font-bold bg-zinc-950 border border-zinc-800 text-zinc-400 hover:text-white transition">
+                정사각 (1:1)
+              </button>
             </div>
           </div>
         </div>
 
-        <!-- Ink & Color Controls -->
+        <!-- Panel B: Photo Reference Prompt Builder (For Gemini / ChatGPT) -->
+        <div id="panel-photo" class="hidden bg-zinc-900/70 p-5 comic-border space-y-4">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-bold uppercase tracking-wider text-zinc-400">01. 사진 참조 변환 전용 프롬프트</span>
+            <span class="text-[11px] text-emerald-400 font-semibold">뭉개짐 없는 AI 재작화용</span>
+          </div>
+
+          <p class="text-xs text-zinc-400 leading-relaxed">
+            원본 사진의 얼굴·포즈를 유지하면서 뭉개짐 없이 미뇰라 원화로 바꾸려면, 아래 설정을 고른 뒤 <strong>프롬프트를 복사하여 Gemini 또는 ChatGPT에 원본 사진과 함께 붙여넣으세요.</strong>
+          </p>
+
+          <div>
+            <label class="text-xs font-semibold text-zinc-300 block mb-1.5">사진 속 인물/장면 특징 (선택 입력)</label>
+            <input id="photo-subject-note" type="text" placeholder="예: green hair, crimson scarf, indoor background" class="w-full bg-zinc-950 border border-zinc-700 focus:border-red-500 focus:outline-none p-2.5 text-xs text-zinc-100 placeholder-zinc-600" />
+          </div>
+
+          <div class="bg-zinc-950 border border-zinc-800 p-3 space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="text-[11px] font-bold text-red-400">생성된 전용 영문 프롬프트</span>
+              <button type="button" id="btn-copy-prompt" class="px-2.5 py-1 bg-red-600 hover:bg-red-500 text-white text-[11px] font-bold transition">
+                프롬프트 복사
+              </button>
+            </div>
+            <p id="generated-ref-prompt" class="text-[11px] text-zinc-300 leading-relaxed font-mono select-all"></p>
+          </div>
+
+          <div class="grid grid-cols-2 gap-2 pt-1">
+            <a href="https://gemini.google.com" target="_blank" rel="noopener noreferrer" class="py-2.5 px-3 bg-zinc-800 hover:bg-zinc-700 border border-zinc-700 text-center text-xs font-bold text-white transition">
+              Gemini 열기 ↗
+            </a>
+            <a href="https://chatgpt.com" target="_blank" rel="noopener noreferrer" class="py-2.5 px-3 bg-zinc-800 hover:bg-zinc-700 border border-zinc-700 text-center text-xs font-bold text-white transition">
+              ChatGPT 열기 ↗
+            </a>
+          </div>
+        </div>
+
+        <!-- Ink & Color Controls (Shared for both modes) -->
         <div class="bg-zinc-900/70 p-5 comic-border space-y-5">
-          <span class="text-xs font-bold uppercase tracking-wider text-zinc-400 block">02. 단순화 및 배색 설정</span>
+          <span class="text-xs font-bold uppercase tracking-wider text-zinc-400 block">02. 원화 명암 및 배색 규칙</span>
 
           <!-- Palette Selector -->
           <div>
-            <label class="text-xs font-semibold text-zinc-300 block mb-2">시그니처 3색 무광 팔레트</label>
+            <label class="text-xs font-semibold text-zinc-300 block mb-2">시그니처 무광 팔레트</label>
             <div class="grid grid-cols-1 gap-2" id="palette-list">
               <button type="button" data-palette="tavira" class="palette-btn text-left p-3 bg-zinc-950 border-2 border-red-600 flex items-center justify-between transition">
                 <div>
@@ -184,25 +223,25 @@
           <!-- Shadow Weight Slider -->
           <div>
             <div class="flex justify-between text-xs mb-1.5">
-              <span class="font-semibold text-zinc-300">먹 그림자 면적 (명암 대비)</span>
-              <span id="shadow-val" class="font-mono text-red-400 font-bold">65%</span>
+              <span class="font-semibold text-zinc-300">먹 그림자 점유율 (Spotting Blacks)</span>
+              <span id="shadow-val" class="font-mono text-red-400 font-bold">70%</span>
             </div>
-            <input id="shadow-range" type="range" min="40" max="82" value="65" class="w-full cursor-pointer" />
+            <input id="shadow-range" type="range" min="50" max="85" value="70" class="w-full cursor-pointer" />
           </div>
 
-          <!-- Form Simplification Slider -->
+          <!-- Simplification & Line Style -->
           <div>
             <div class="flex justify-between text-xs mb-1.5">
-              <span class="font-semibold text-zinc-300">형태 단순화 강도 (잔선 제거)</span>
-              <span id="ink-val" class="font-mono text-red-400 font-bold">강함</span>
+              <span class="font-semibold text-zinc-300">형태 단순화 &amp; 잉크 스타일</span>
+              <span id="ink-val" class="font-mono text-red-400 font-bold">각진 펜선 + 단색 면</span>
             </div>
-            <input id="ink-range" type="range" min="1" max="3" value="3" class="w-full cursor-pointer" />
+            <input id="ink-range" type="range" min="1" max="3" value="2" class="w-full cursor-pointer" />
           </div>
         </div>
 
         <!-- Generate CTA -->
         <button type="button" id="btn-generate" class="w-full py-4 bg-red-600 hover:bg-red-500 active:translate-y-0.5 text-white font-black tracking-wider uppercase text-sm comic-border transition flex items-center justify-center gap-2">
-          <span id="btn-generate-text">마이크 미뇰라 화풍으로 변환하기</span>
+          <span id="btn-generate-text">미뇰라 원화 일러스트 생성하기</span>
         </button>
 
         <div id="status-box" class="hidden p-3 bg-zinc-900 border border-zinc-700 text-xs text-center">
@@ -220,7 +259,7 @@
             </div>
             <div class="flex items-center gap-2">
               <button type="button" id="btn-download" class="hidden px-3 py-1.5 bg-zinc-100 hover:bg-white text-black text-xs font-bold transition">
-                고해상도 이미지 저장
+                고해상도 PNG 저장
               </button>
             </div>
           </div>
@@ -231,40 +270,25 @@
             <div id="empty-state" class="text-center p-8 max-w-md">
               <div class="font-gothic text-2xl font-black text-zinc-700 mb-2">CHIAROSCURO</div>
               <p class="text-xs sm:text-sm text-zinc-500 leading-relaxed">
-                왼쪽에서 변환할 사진을 업로드하거나,<br />
-                <strong>[텍스트로 새로 그리기]</strong> 탭에서 원하는 장면을 입력해 주세요.
+                왼쪽에서 장면을 입력하거나 예시 칩을 선택한 뒤<br />
+                <strong>[미뇰라 원화 일러스트 생성하기]</strong> 버튼을 눌러주세요.
               </p>
             </div>
 
             <!-- Single Result Image -->
             <img id="result-img" class="hidden w-full h-full object-contain bg-black" alt="Generated Mignola Artwork" />
 
-            <!-- Before/After Comparison View -->
-            <div id="compare-wrap" class="hidden relative w-full h-full select-none">
-              <img id="after-img" class="w-full h-full object-contain bg-black" alt="After" />
-              <div id="before-clip" class="absolute inset-0 overflow-hidden" style="width: 50%;">
-                <img id="before-img" class="w-full h-full object-contain bg-black" alt="Before" />
-              </div>
-              <div id="slider-bar" class="absolute top-0 bottom-0 w-0.5 bg-red-600 cursor-ew-resize" style="left: 50%;">
-                <div class="w-7 h-7 -ml-3.5 bg-red-600 border-2 border-black text-white text-[10px] font-black flex items-center justify-center absolute top-1/2 -translate-y-1/2 shadow-lg">
-                  ↔
-                </div>
-              </div>
-              <span class="absolute top-3 left-3 px-2 py-0.5 bg-black/80 text-[10px] font-bold text-zinc-300 border border-zinc-700">ORIGINAL</span>
-              <span class="absolute top-3 right-3 px-2 py-0.5 bg-red-600 text-[10px] font-bold text-white border border-black">MIGNOLA INK</span>
-            </div>
-
             <!-- Loading Overlay -->
             <div id="loading-overlay" class="hidden absolute inset-0 bg-black/85 backdrop-blur-sm flex flex-col items-center justify-center p-6 text-center z-20">
               <div class="w-10 h-10 border-4 border-zinc-700 border-t-red-600 rounded-full animate-spin mb-4"></div>
-              <div class="font-gothic font-bold text-sm tracking-widest text-white uppercase mb-1">Simplifying Shapes...</div>
-              <p class="text-xs text-zinc-400">잔선과 질감을 지우고 단순한 단색 면과 먹선으로 정리하고 있습니다</p>
+              <div class="font-gothic font-bold text-sm tracking-widest text-white uppercase mb-1">Inking &amp; Spotting Blacks...</div>
+              <p class="text-xs text-zinc-400">각진 도형 단순화와 무광 3색 잉킹을 진행하고 있습니다 (약 8~15초)</p>
             </div>
           </div>
 
           <div class="flex items-center justify-between text-[11px] text-zinc-500">
-            <span>※ 사진 변환 시 좌우 슬라이더로 원본과 잉크 결과물을 비교할 수 있습니다.</span>
-            <span id="mode-indicator">MODE: PHOTO-TO-INK</span>
+            <span>※ 생성된 이미지는 무료 서버를 통해 즉시 렌더링되며 별도 API 키가 필요하지 않습니다.</span>
+            <span id="mode-indicator">RATIO: 4:3</span>
           </div>
         </div>
       </div>
@@ -273,44 +297,44 @@
   </main>
 
   <script>
-    let currentTab = 'photo';
+    let currentTab = 'text';
     let selectedPalette = 'tavira';
-    let originalDataUrl = null;
+    let selectedWidth = 1024;
+    let selectedHeight = 768;
     let generatedDataUrl = null;
-    let isDraggingSlider = false;
 
-    const paletteDescriptions = {
-      tavira: 'Muted slate-blue flat background, solid pitch-black shadows, pale stone highlights, and flat crimson focal color.',
-      abyss: 'Muted desaturated sea-teal flat background, solid pitch-black shadows, and pale parchment-cream highlights.',
-      hellfire: 'Dark burnt-crimson flat background, solid pitch-black shadows, and warm ochre-amber flat highlights.',
-      woodcut: 'Pure high-contrast black ink and off-white paper flat two-tone illustration, zero gradients.'
+    const palettePrompts = {
+      tavira: 'muted slate-blue flat background, deep pitch-black shadows, pale parchment stone highlights, and bold crimson red focal accents',
+      abyss: 'muted desaturated sea-teal flat background, deep pitch-black shadows, and pale ghostly cream highlights',
+      hellfire: 'dark burnt-crimson flat background, deep pitch-black shadows, and warm ochre-amber flat highlights',
+      woodcut: 'pure high-contrast black ink and off-white paper two-tone woodcut illustration, zero color, zero gradients'
     };
 
-    const tabPhoto = document.getElementById('tab-photo');
+    const inkStylePrompts = {
+      1: 'clean minimal thin-to-medium hand-inked contours, simplified geometric shapes, flat cel-shaded blocks',
+      2: 'chiseled angular geometric shapes, confident black ink outlines, bold flat cel-shaded color planes',
+      3: 'heavy expressive brush outlines, dramatic jagged shadow silhouettes, floating black ink-spore shapes, flat matte print colors'
+    };
+
     const tabText = document.getElementById('tab-text');
-    const panelPhoto = document.getElementById('panel-photo');
+    const tabPhoto = document.getElementById('tab-photo');
     const panelText = document.getElementById('panel-text');
-    const fileInput = document.getElementById('file-input');
-    const dropzone = document.getElementById('dropzone');
-    const btnClearPhoto = document.getElementById('btn-clear-photo');
+    const panelPhoto = document.getElementById('panel-photo');
     const scenePrompt = document.getElementById('scene-prompt');
+    const photoSubjectNote = document.getElementById('photo-subject-note');
+    const generatedRefPrompt = document.getElementById('generated-ref-prompt');
+    const btnCopyPrompt = document.getElementById('btn-copy-prompt');
     const shadowRange = document.getElementById('shadow-range');
     const shadowVal = document.getElementById('shadow-val');
     const inkRange = document.getElementById('ink-range');
     const inkVal = document.getElementById('ink-val');
     const btnGenerate = document.getElementById('btn-generate');
-    const btnGenerateText = document.getElementById('btn-generate-text');
     const statusBox = document.getElementById('status-box');
     const statusMsg = document.getElementById('status-msg');
     const canvasLabel = document.getElementById('canvas-label');
     const modeIndicator = document.getElementById('mode-indicator');
     const emptyState = document.getElementById('empty-state');
     const resultImg = document.getElementById('result-img');
-    const compareWrap = document.getElementById('compare-wrap');
-    const beforeImg = document.getElementById('before-img');
-    const afterImg = document.getElementById('after-img');
-    const beforeClip = document.getElementById('before-clip');
-    const sliderBar = document.getElementById('slider-bar');
     const loadingOverlay = document.getElementById('loading-overlay');
     const btnDownload = document.getElementById('btn-download');
 
@@ -326,32 +350,56 @@
       statusMsg.textContent = msg;
     }
 
+    function updateRefPromptPreview() {
+      const shadowPct = shadowRange.value;
+      const palDesc = palettePrompts[selectedPalette];
+      const inkDesc = inkStylePrompts[inkRange.value];
+      const note = photoSubjectNote.value.trim();
+      const subjectClause = note ? ` Keep key character traits (${note}).` : '';
+
+      generatedRefPrompt.textContent =
+        `Redraw this exact character, pose, and composition in the authentic comic book art style of Mike Mignola.${subjectClause} Simplify all facial features, hair, and clothing into ${inkDesc}. Use dramatic chiaroscuro lighting with ${shadowPct}% solid pitch-black spotting shadows, ${palDesc}, flat matte comic colors, and zero gradients or photorealistic textures.`;
+    }
+
     function switchTab(tab) {
       currentTab = tab;
-      if (tab === 'photo') {
-        tabPhoto.className = 'py-2.5 text-xs sm:text-sm font-bold bg-red-600 text-white transition';
-        tabText.className = 'py-2.5 text-xs sm:text-sm font-bold text-zinc-400 hover:text-white transition';
-        panelPhoto.classList.remove('hidden');
-        panelText.classList.add('hidden');
-        btnGenerateText.textContent = '마이크 미뇰라 화풍으로 변환하기';
-        modeIndicator.textContent = 'MODE: PHOTO-TO-INK';
-      } else {
+      if (tab === 'text') {
         tabText.className = 'py-2.5 text-xs sm:text-sm font-bold bg-red-600 text-white transition';
         tabPhoto.className = 'py-2.5 text-xs sm:text-sm font-bold text-zinc-400 hover:text-white transition';
         panelText.classList.remove('hidden');
         panelPhoto.classList.add('hidden');
-        btnGenerateText.textContent = '텍스트로 미뇰라 그림 그리기';
-        modeIndicator.textContent = 'MODE: TEXT-TO-INK';
+        btnGenerate.classList.remove('hidden');
+      } else {
+        tabPhoto.className = 'py-2.5 text-xs sm:text-sm font-bold bg-red-600 text-white transition';
+        tabText.className = 'py-2.5 text-xs sm:text-sm font-bold text-zinc-400 hover:text-white transition';
+        panelPhoto.classList.remove('hidden');
+        panelText.classList.add('hidden');
+        btnGenerate.classList.add('hidden');
+        updateRefPromptPreview();
       }
       statusBox.classList.add('hidden');
     }
 
-    tabPhoto.addEventListener('click', () => switchTab('photo'));
     tabText.addEventListener('click', () => switchTab('text'));
+    tabPhoto.addEventListener('click', () => switchTab('photo'));
 
     document.querySelectorAll('.prompt-chip').forEach(chip => {
       chip.addEventListener('click', () => {
         scenePrompt.value = chip.dataset.prompt;
+      });
+    });
+
+    document.querySelectorAll('.ratio-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.ratio-btn').forEach(b => {
+          b.classList.remove('border-2', 'border-red-600', 'text-white');
+          b.classList.add('border', 'border-zinc-800', 'text-zinc-400');
+        });
+        btn.classList.remove('border', 'border-zinc-800', 'text-zinc-400');
+        btn.classList.add('border-2', 'border-red-600', 'text-white');
+        selectedWidth = parseInt(btn.dataset.w, 10);
+        selectedHeight = parseInt(btn.dataset.h, 10);
+        modeIndicator.textContent = `RATIO: ${btn.dataset.ratio}`;
       });
     });
 
@@ -364,410 +412,92 @@
         btn.classList.remove('border', 'border-zinc-800');
         btn.classList.add('border-2', 'border-red-600');
         selectedPalette = btn.dataset.palette;
+        updateRefPromptPreview();
       });
     });
 
     shadowRange.addEventListener('input', () => {
       shadowVal.textContent = `${shadowRange.value}%`;
+      updateRefPromptPreview();
     });
 
-    const inkLabels = { '1': '약함', '2': '보통', '3': '강함' };
+    const inkLabels = {
+      '1': '절제된 펜선 + 단순 면',
+      '2': '각진 펜선 + 단색 면',
+      '3': '거친 붓선 + 먹 포자'
+    };
     inkRange.addEventListener('input', () => {
       inkVal.textContent = inkLabels[inkRange.value];
+      updateRefPromptPreview();
     });
 
-    function loadImageFile(file) {
-      return new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.onerror = () => reject(new Error('파일을 읽을 수 없습니다.'));
-        reader.onload = (e) => {
-          const img = new Image();
-          img.onerror = () => reject(new Error('이미지를 불러올 수 없습니다.'));
-          img.onload = () => {
-            const maxDim = 960;
-            let w = img.width;
-            let h = img.height;
-            if (w > maxDim || h > maxDim) {
-              if (w > h) {
-                h = Math.round((h * maxDim) / w);
-                w = maxDim;
-              } else {
-                w = Math.round((w * maxDim) / h);
-                h = maxDim;
-              }
-            }
-            const canvas = document.createElement('canvas');
-            canvas.width = w;
-            canvas.height = h;
-            const ctx = canvas.getContext('2d');
-            ctx.drawImage(img, 0, 0, w, h);
-            resolve(canvas.toDataURL('image/png'));
-          };
-          img.src = e.target.result;
-        };
-        reader.readAsDataURL(file);
-      });
-    }
+    photoSubjectNote.addEventListener('input', updateRefPromptPreview);
 
-    async function handleFile(file) {
-      if (!file || !file.type.startsWith('image/')) return;
+    btnCopyPrompt.addEventListener('click', async () => {
       try {
-        originalDataUrl = await loadImageFile(file);
-        generatedDataUrl = null;
-        emptyState.classList.add('hidden');
-        compareWrap.classList.add('hidden');
-        resultImg.src = originalDataUrl;
-        resultImg.classList.remove('hidden');
-        btnClearPhoto.classList.remove('hidden');
-        btnDownload.classList.add('hidden');
-        canvasLabel.textContent = '원본 이미지 준비 완료';
-        statusBox.classList.add('hidden');
-      } catch (err) {
-        showStatus(err.message, true);
+        await navigator.clipboard.writeText(generatedRefPrompt.textContent);
+        btnCopyPrompt.textContent = '복사 완료!';
+        showStatus('프롬프트가 복사되었습니다. Gemini나 ChatGPT에 원본 사진과 함께 붙여넣으세요.', false);
+        setTimeout(() => { btnCopyPrompt.textContent = '프롬프트 복사'; }, 2000);
+      } catch (e) {
+        showStatus('프롬프트 영역을 길게 눌러 직접 복사해 주세요.', true);
       }
-    }
-
-    fileInput.addEventListener('change', (e) => handleFile(e.target.files[0]));
-    dropzone.addEventListener('dragover', (e) => { e.preventDefault(); dropzone.classList.add('border-red-500'); });
-    dropzone.addEventListener('dragleave', () => dropzone.classList.remove('border-red-500'));
-    dropzone.addEventListener('drop', (e) => {
-      e.preventDefault();
-      dropzone.classList.remove('border-red-500');
-      handleFile(e.dataTransfer.files[0]);
     });
-
-    btnClearPhoto.addEventListener('click', () => {
-      originalDataUrl = null;
-      generatedDataUrl = null;
-      fileInput.value = '';
-      resultImg.classList.add('hidden');
-      compareWrap.classList.add('hidden');
-      emptyState.classList.remove('hidden');
-      btnClearPhoto.classList.add('hidden');
-      btnDownload.classList.add('hidden');
-      canvasLabel.textContent = '작업 캔버스 대기 중';
-    });
-
-    // Edge-Preserving Kuwahara Pass (merges small details into clean polygon-like shapes)
-    function kuwaharaPass(data, w, h, radius) {
-      const out = new Uint8ClampedArray(data.length);
-      for (let y = 0; y < h; y++) {
-        for (let x = 0; x < w; x++) {
-          const xL = Math.max(0, x - radius);
-          const xR = Math.min(w - 1, x + radius);
-          const yT = Math.max(0, y - radius);
-          const yB = Math.min(h - 1, y + radius);
-
-          const boxes = [
-            [xL, x, yT, y],
-            [x, xR, yT, y],
-            [xL, x, y, yB],
-            [x, xR, y, yB]
-          ];
-
-          let bestVar = Infinity;
-          let bR = 0, bG = 0, bB = 0;
-
-          for (let q = 0; q < 4; q++) {
-            const [bx0, bx1, by0, by1] = boxes[q];
-            let r = 0, g = 0, b = 0, r2 = 0, g2 = 0, b2 = 0, n = 0;
-            for (let ry = by0; ry <= by1; ry++) {
-              const rowOffset = ry * w;
-              for (let rx = bx0; rx <= bx1; rx++) {
-                const idx = (rowOffset + rx) * 4;
-                const rv = data[idx], gv = data[idx + 1], bv = data[idx + 2];
-                r += rv; g += gv; b += bv;
-                r2 += rv * rv; g2 += gv * gv; b2 += bv * bv;
-                n++;
-              }
-            }
-            const inv = 1 / (n || 1);
-            const mr = r * inv, mg = g * inv, mb = b * inv;
-            const variance = (r2 * inv - mr * mr) + (g2 * inv - mg * mg) + (b2 * inv - mb * mb);
-            if (variance < bestVar) {
-              bestVar = variance;
-              bR = mr; bG = mg; bB = mb;
-            }
-          }
-
-          const p = (y * w + x) * 4;
-          out[p] = bR;
-          out[p + 1] = bG;
-          out[p + 2] = bB;
-          out[p + 3] = 255;
-        }
-      }
-      return out;
-    }
-
-    // Majority-vote morphological smoothing (eliminates jagged pixel speckles so shapes look hand-inked)
-    function cleanShapeMask(mask, w, h, passes) {
-      let cur = mask;
-      for (let pass = 0; pass < passes; pass++) {
-        const next = new Uint8Array(cur.length);
-        for (let y = 1; y < h - 1; y++) {
-          for (let x = 1; x < w - 1; x++) {
-            const idx = y * w + x;
-            let sum = 0;
-            for (let dy = -1; dy <= 1; dy++) {
-              for (let dx = -1; dx <= 1; dx++) {
-                sum += cur[(y + dy) * w + (x + dx)];
-              }
-            }
-            next[idx] = sum >= 5 ? 1 : 0;
-          }
-        }
-        cur = next;
-      }
-      return cur;
-    }
-
-    // Authentic Mike Mignola Simplified Form & Clean Flat Color Engine
-    function renderMignolaStyleOnCanvas(dataUrl, paletteKey, shadowPct, simplifyLevel) {
-      return new Promise((resolve) => {
-        const img = new Image();
-        img.onload = () => {
-          const origW = img.width;
-          const origH = img.height;
-
-          // Work on a slightly reduced internal grid so fine textures naturally simplify into bold comic shapes
-          const scaleFactor = simplifyLevel === 3 ? 0.55 : simplifyLevel === 2 ? 0.7 : 0.85;
-          const w = Math.max(240, Math.round(origW * scaleFactor));
-          const h = Math.max(180, Math.round(origH * scaleFactor));
-
-          const workCanvas = document.createElement('canvas');
-          workCanvas.width = w;
-          workCanvas.height = h;
-          const wCtx = workCanvas.getContext('2d');
-          wCtx.drawImage(img, 0, 0, w, h);
-
-          let imgData = wCtx.getImageData(0, 0, w, h);
-          let buf = imgData.data;
-
-          // Step 1: Iterative Kuwahara smoothing to flatten skin pores, hair strands, and background noise into broad geometric shapes
-          const iterations = simplifyLevel === 3 ? 3 : simplifyLevel === 2 ? 2 : 1;
-          for (let it = 0; it < iterations; it++) {
-            buf = kuwaharaPass(buf, w, h, 3);
-          }
-
-          // Step 2: Compute luminance & histogram on simplified planes
-          const lumArr = new Float32Array(w * h);
-          const hist = new Uint32Array(256);
-          for (let i = 0, p = 0; i < buf.length; i += 4, p++) {
-            const lum = 0.299 * buf[i] + 0.587 * buf[i + 1] + 0.114 * buf[i + 2];
-            lumArr[p] = lum;
-            hist[Math.min(255, Math.max(0, lum | 0))]++;
-          }
-
-          // Map slider (40..82%) to dark spotting-black area
-          const targetDarkRatio = shadowPct / 100;
-          const targetDarkPixels = w * h * targetDarkRatio;
-          let acc = 0;
-          let blackCutoff = 85;
-          for (let b = 0; b < 256; b++) {
-            acc += hist[b];
-            if (acc >= targetDarkPixels) {
-              blackCutoff = b;
-              break;
-            }
-          }
-
-          // Step 3: Create clean, smooth-edged shadow mask (no noisy speckles)
-          let shadowMask = new Uint8Array(w * h);
-          for (let p = 0; p < w * h; p++) {
-            shadowMask[p] = lumArr[p] < blackCutoff ? 1 : 0;
-          }
-          shadowMask = cleanShapeMask(shadowMask, w, h, 2);
-
-          // Step 4: Clean, uniform-width pen contours only along major structural edges
-          let lineMask = new Uint8Array(w * h);
-          const edgeThreshold = simplifyLevel === 3 ? 65 : simplifyLevel === 2 ? 52 : 40;
-
-          for (let y = 1; y < h - 1; y++) {
-            for (let x = 1; x < w - 1; x++) {
-              const idx = y * w + x;
-              const gx = -lumArr[(y - 1) * w + (x - 1)] - 2 * lumArr[y * w + (x - 1)] - lumArr[(y + 1) * w + (x - 1)]
-                       + lumArr[(y - 1) * w + (x + 1)] + 2 * lumArr[y * w + (x + 1)] + lumArr[(y + 1) * w + (x + 1)];
-              const gy = -lumArr[(y - 1) * w + (x - 1)] - 2 * lumArr[(y - 1) * w + x] - lumArr[(y - 1) * w + (x + 1)]
-                       + lumArr[(y + 1) * w + (x - 1)] + 2 * lumArr[(y + 1) * w + x] + lumArr[(y + 1) * w + (x + 1)];
-              const mag = Math.sqrt(gx * gx + gy * gy) * 0.25;
-              if (mag > edgeThreshold) {
-                lineMask[idx] = 1;
-              }
-            }
-          }
-          // Smooth out broken dots so lines look like confident ink strokes
-          lineMask = cleanShapeMask(lineMask, w, h, 1);
-
-          // Step 5: Strict 3-Color Muted Matte Mignola Palettes (Zero hatching noise, zero gradients)
-          const palettes = {
-            tavira: {
-              bgTone: [92, 112, 132],      // Muted slate-blue flat background (like Mignola skies/walls)
-              midTone: [158, 168, 176],    // Cool desaturated stone
-              lightTone: [224, 218, 202],  // Warm off-white highlight
-              accent: [198, 48, 38]        // Flat Mignola crimson focal color
-            },
-            abyss: {
-              bgTone: [70, 104, 98],       // Muted sea-teal flat tone
-              midTone: [132, 156, 146],    // Pale sage-slate
-              lightTone: [224, 218, 194],  // Ghostly parchment cream
-              accent: [196, 152, 68]       // Muted ochre accent
-            },
-            hellfire: {
-              bgTone: [142, 42, 32],       // Flat Mignola burnt crimson background
-              midTone: [196, 86, 44],      // Flat terracotta-orange
-              lightTone: [232, 174, 72],   // Warm amber highlight
-              accent: [216, 56, 36]        // Vermilion accent
-            },
-            woodcut: {
-              bgTone: [235, 230, 216],     // Clean off-white comic paper
-              midTone: [235, 230, 216],
-              lightTone: [242, 238, 226],
-              accent: [235, 230, 216]
-            }
-          };
-
-          const pal = palettes[paletteKey] || palettes.tavira;
-          const outBuf = imgData.data;
-
-          for (let p = 0; p < w * h; p++) {
-            const i = p * 4;
-            const r = buf[i];
-            const g = buf[i + 1];
-            const b = buf[i + 2];
-            const lum = lumArr[p];
-
-            // Pure Pitch-Black Spotting Shadows OR Clean Structural Ink Line
-            if (shadowMask[p] === 1 || lineMask[p] === 1) {
-              outBuf[i] = 8;
-              outBuf[i + 1] = 8;
-              outBuf[i + 2] = 10;
-              outBuf[i + 3] = 255;
-              continue;
-            }
-
-            if (paletteKey === 'woodcut') {
-              outBuf[i] = pal.bgTone[0];
-              outBuf[i + 1] = pal.bgTone[1];
-              outBuf[i + 2] = pal.bgTone[2];
-              outBuf[i + 3] = 255;
-              continue;
-            }
-
-            // Detect distinct warm/red focal elements (like red scarf/coat) vs cool/neutral planes
-            const maxC = Math.max(r, g, b);
-            const minC = Math.min(r, g, b);
-            const sat = maxC === 0 ? 0 : (maxC - minC) / maxC;
-            const isRedFocal = r > g * 1.32 && r > b * 1.32 && sat > 0.35;
-
-            if (isRedFocal) {
-              outBuf[i] = pal.accent[0];
-              outBuf[i + 1] = pal.accent[1];
-              outBuf[i + 2] = pal.accent[2];
-            } else if (lum < blackCutoff + 52) {
-              // Broad flat mid-dark color plane
-              outBuf[i] = pal.bgTone[0];
-              outBuf[i + 1] = pal.bgTone[1];
-              outBuf[i + 2] = pal.bgTone[2];
-            } else if (lum < blackCutoff + 108) {
-              // Broad flat midtone plane
-              outBuf[i] = pal.midTone[0];
-              outBuf[i + 1] = pal.midTone[1];
-              outBuf[i + 2] = pal.midTone[2];
-            } else {
-              // Broad flat highlight plane (face/light source)
-              outBuf[i] = pal.lightTone[0];
-              outBuf[i + 1] = pal.lightTone[1];
-              outBuf[i + 2] = pal.lightTone[2];
-            }
-            outBuf[i + 3] = 255;
-          }
-
-          wCtx.putImageData(imgData, 0, 0);
-
-          // Step 6: Upscale back to crisp full resolution with clean comic panel border
-          const finalCanvas = document.createElement('canvas');
-          finalCanvas.width = origW;
-          finalCanvas.height = origH;
-          const fCtx = finalCanvas.getContext('2d');
-          fCtx.imageSmoothingEnabled = true;
-          fCtx.imageSmoothingQuality = 'high';
-          fCtx.drawImage(workCanvas, 0, 0, origW, origH);
-
-          // Crisp black comic panel frame
-          fCtx.strokeStyle = '#08080a';
-          fCtx.lineWidth = Math.max(6, Math.round(origW * 0.01));
-          fCtx.strokeRect(0, 0, origW, origH);
-
-          resolve(finalCanvas.toDataURL('image/png'));
-        };
-        img.src = dataUrl;
-      });
-    }
 
     async function generateArtwork() {
-      if (currentTab === 'photo' && !originalDataUrl) {
-        showStatus('먼저 변환할 원본 사진을 업로드해 주세요.', true);
-        return;
-      }
-      if (currentTab === 'text' && !scenePrompt.value.trim()) {
-        showStatus('그릴 장면의 설명을 텍스트로 입력해 주세요.', true);
+      const userScene = scenePrompt.value.trim();
+      if (!userScene) {
+        showStatus('그릴 장면의 설명을 입력하거나 위 예시 칩을 눌러주세요.', true);
         return;
       }
 
       loadingOverlay.classList.remove('hidden');
       btnGenerate.disabled = true;
-      showStatus('잔선을 제거하고 단순한 단색 면과 먹선으로 변환 중입니다...', false);
+      showStatus('AI 작화 엔진이 미뇰라 원화 스타일로 일러스트를 생성 중입니다...', false);
+
+      const shadowPct = shadowRange.value;
+      const palDesc = palettePrompts[selectedPalette];
+      const inkDesc = inkStylePrompts[inkRange.value];
+
+      const fullPrompt = [
+        'Authentic Mike Mignola Hellboy comic book illustration style.',
+        `Simplified geometric forms, ${inkDesc}.`,
+        `Dramatic chiaroscuro lighting with ${shadowPct}% of the image covered in solid pitch-black spotting shadows.`,
+        `Color palette: ${palDesc}.`,
+        'Single cohesive comic panel artwork, flat matte print finish, NO gradients, NO 3D shading, NO speech bubbles, NO text, NO watermarks.',
+        `Scene: ${userScene}`
+      ].join(' ');
 
       try {
-        if (currentTab === 'photo') {
-          await new Promise(r => setTimeout(r, 60));
-          const shadowPct = parseInt(shadowRange.value, 10);
-          const simplifyLevel = parseInt(inkRange.value, 10);
-          generatedDataUrl = await renderMignolaStyleOnCanvas(originalDataUrl, selectedPalette, shadowPct, simplifyLevel);
+        const res = await fetch('/.netlify/functions/generate', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            prompt: fullPrompt,
+            width: selectedWidth,
+            height: selectedHeight
+          })
+        });
 
-          emptyState.classList.add('hidden');
-          btnDownload.classList.remove('hidden');
-          resultImg.classList.add('hidden');
-          beforeImg.src = originalDataUrl;
-          afterImg.src = generatedDataUrl;
-          beforeClip.style.width = '50%';
-          sliderBar.style.left = '50%';
-          compareWrap.classList.remove('hidden');
-          canvasLabel.textContent = '변환 완료 (좌우 슬라이더 비교)';
-          showStatus('완료되었습니다! 먹 그림자 면적이나 팔레트를 조절해 보세요.', false);
-        } else {
-          const shadowPct = shadowRange.value;
-          const paletteDesc = paletteDescriptions[selectedPalette];
-          const fullPrompt = `Mike Mignola comic book art style, simplified geometric shapes, clean minimal ink outlines, ${shadowPct}% solid pitch-black spotting shadows, flat matte cel-shaded colors, ${paletteDesc}, single scene, NO gradients, NO complex hatching, NO text. Scene: ${scenePrompt.value.trim()}`;
-
-          const res = await fetch('/.netlify/functions/generate', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ prompt: fullPrompt })
-          });
-
-          const rawText = await res.text();
-          let data = {};
-          try {
-            data = JSON.parse(rawText);
-          } catch (e) {
-            throw new Error(`서버 응답 오류 (HTTP ${res.status})`);
-          }
-
-          if (!res.ok) {
-            throw new Error(data.error || `서버 생성 오류 (HTTP ${res.status})`);
-          }
-
-          generatedDataUrl = `data:${data.mimeType || 'image/jpeg'};base64,${data.imageBase64}`;
-          emptyState.classList.add('hidden');
-          btnDownload.classList.remove('hidden');
-          compareWrap.classList.add('hidden');
-          resultImg.src = generatedDataUrl;
-          resultImg.classList.remove('hidden');
-          canvasLabel.textContent = '텍스트 아트워크 생성 완료';
-          showStatus('완료되었습니다! 우측 상단 버튼으로 저장할 수 있습니다.', false);
+        const rawText = await res.text();
+        let data = {};
+        try {
+          data = JSON.parse(rawText);
+        } catch (e) {
+          throw new Error(`서버 응답 오류 (HTTP ${res.status})`);
         }
+
+        if (!res.ok) {
+          throw new Error(data.error || `서버 생성 오류 (HTTP ${res.status})`);
+        }
+
+        generatedDataUrl = `data:${data.mimeType || 'image/jpeg'};base64,${data.imageBase64}`;
+        emptyState.classList.add('hidden');
+        btnDownload.classList.remove('hidden');
+        resultImg.src = generatedDataUrl;
+        resultImg.classList.remove('hidden');
+        canvasLabel.textContent = '미뇰라 원화 일러스트 완성';
+        showStatus('완료되었습니다! 우측 상단 버튼으로 고해상도 이미지를 저장할 수 있습니다.', false);
       } catch (err) {
         showStatus(`오류: ${err.message}`, true);
       } finally {
@@ -778,31 +508,15 @@
 
     btnGenerate.addEventListener('click', generateArtwork);
 
-    function updateSlider(clientX) {
-      const rect = compareWrap.getBoundingClientRect();
-      let pct = ((clientX - rect.left) / rect.width) * 100;
-      pct = Math.max(0, Math.min(100, pct));
-      beforeClip.style.width = `${pct}%`;
-      sliderBar.style.left = `${pct}%`;
-    }
-
-    sliderBar.addEventListener('mousedown', () => isDraggingSlider = true);
-    window.addEventListener('mouseup', () => isDraggingSlider = false);
-    window.addEventListener('mousemove', (e) => { if (isDraggingSlider) updateSlider(e.clientX); });
-
-    sliderBar.addEventListener('touchstart', () => isDraggingSlider = true);
-    window.addEventListener('touchend', () => isDraggingSlider = false);
-    window.addEventListener('touchmove', (e) => {
-      if (isDraggingSlider && e.touches[0]) updateSlider(e.touches[0].clientX);
-    });
-
     btnDownload.addEventListener('click', () => {
       if (!generatedDataUrl) return;
       const a = document.createElement('a');
       a.href = generatedDataUrl;
-      a.download = `mignola-ink-${Date.now()}.png`;
+      a.download = `mignola-art-${Date.now()}.png`;
       a.click();
     });
+
+    updateRefPromptPreview();
   </script>
 </body>
 </html>
