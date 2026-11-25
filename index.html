@@ -28,10 +28,6 @@
       border: 2px solid #27272a;
       box-shadow: 4px 4px 0px #000000;
     }
-    .comic-border-active {
-      border: 2px solid #dc2626;
-      box-shadow: 4px 4px 0px #7f1d1d;
-    }
     input[type="range"] {
       accent-color: #dc2626;
     }
@@ -55,7 +51,7 @@
       </div>
 
       <div class="flex items-center gap-2">
-        <button id="btn-api-modal" class="px-3 py-1.5 text-xs font-medium bg-zinc-900 hover:bg-zinc-800 text-zinc-300 border border-zinc-700 transition">
+        <button type="button" id="btn-api-modal" class="px-3 py-1.5 text-xs font-medium bg-zinc-900 hover:bg-zinc-800 text-zinc-300 border border-zinc-700 transition">
           API 키 설정
         </button>
       </div>
@@ -91,10 +87,10 @@
 
         <!-- Mode Switcher Tabs -->
         <div class="grid grid-cols-2 bg-zinc-900 p-1 border border-zinc-800">
-          <button id="tab-photo" class="py-2.5 text-xs sm:text-sm font-bold bg-red-600 text-white transition">
+          <button type="button" id="tab-photo" class="py-2.5 text-xs sm:text-sm font-bold bg-red-600 text-white transition">
             사진 업로드 변환
           </button>
-          <button id="tab-text" class="py-2.5 text-xs sm:text-sm font-bold text-zinc-400 hover:text-white transition">
+          <button type="button" id="tab-text" class="py-2.5 text-xs sm:text-sm font-bold text-zinc-400 hover:text-white transition">
             텍스트로 새로 그리기
           </button>
         </div>
@@ -103,13 +99,13 @@
         <div id="panel-photo" class="bg-zinc-900/70 p-5 comic-border space-y-4">
           <div class="flex items-center justify-between">
             <span class="text-xs font-bold uppercase tracking-wider text-zinc-400">01. 원본 사진 선택</span>
-            <button id="btn-clear-photo" class="hidden text-xs text-red-400 hover:underline">사진 지우기</button>
+            <button type="button" id="btn-clear-photo" class="hidden text-xs text-red-400 hover:underline">사진 지우기</button>
           </div>
 
           <label id="dropzone" for="file-input" class="block border-2 border-dashed border-zinc-700 hover:border-red-500 bg-zinc-950/60 p-6 text-center cursor-pointer transition">
             <input id="file-input" type="file" accept="image/*" class="hidden" />
             <div class="text-zinc-300 font-semibold text-sm mb-1">클릭하거나 사진을 여기로 드래그하세요</div>
-            <div class="text-xs text-zinc-500">JPG, PNG, WEBP 지원 (인물, 건축물, 풍경 모두 가능)</div>
+            <div class="text-xs text-zinc-500">JPG, PNG, WEBP 지원 (고화질 사진 자동 최적화)</div>
           </label>
         </div>
 
@@ -210,11 +206,13 @@
         </div>
 
         <!-- Generate CTA -->
-        <button id="btn-generate" class="w-full py-4 bg-red-600 hover:bg-red-500 active:translate-y-0.5 text-white font-black tracking-wider uppercase text-sm comic-border transition flex items-center justify-center gap-2">
+        <button type="button" id="btn-generate" class="w-full py-4 bg-red-600 hover:bg-red-500 active:translate-y-0.5 text-white font-black tracking-wider uppercase text-sm comic-border transition flex items-center justify-center gap-2">
           <span id="btn-generate-text">마이크 미뇰라 화풍으로 변환하기</span>
         </button>
 
-        <p id="status-msg" class="text-xs text-center text-zinc-400 min-h-[1.25rem]"></p>
+        <div id="status-box" class="hidden p-3 bg-zinc-900 border border-zinc-700 text-xs text-center">
+          <p id="status-msg" class="text-zinc-200 font-medium break-words"></p>
+        </div>
       </div>
 
       <!-- Right Canvas / Preview (7 cols) -->
@@ -226,7 +224,7 @@
               <span id="canvas-label" class="text-xs font-bold uppercase tracking-wider text-zinc-300">작업 캔버스 대기 중</span>
             </div>
             <div class="flex items-center gap-2">
-              <button id="btn-download" class="hidden px-3 py-1.5 bg-zinc-100 hover:bg-white text-black text-xs font-bold transition">
+              <button type="button" id="btn-download" class="hidden px-3 py-1.5 bg-zinc-100 hover:bg-white text-black text-xs font-bold transition">
                 고해상도 이미지 저장
               </button>
             </div>
@@ -279,26 +277,25 @@
     </div>
   </main>
 
-  <!-- Optional Local API Key Modal (for direct browser testing without Netlify env) -->
+  <!-- Optional Local API Key Modal -->
   <div id="api-modal" class="hidden fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
     <div class="bg-zinc-900 border-2 border-zinc-700 max-w-md w-full p-6 space-y-4">
       <div class="flex items-center justify-between">
         <h3 class="font-bold text-base text-white">개인 Gemini API 키 설정 (선택사항)</h3>
-        <button id="btn-close-modal" class="text-zinc-400 hover:text-white text-sm">✕</button>
+        <button type="button" id="btn-close-modal" class="text-zinc-400 hover:text-white text-sm">✕</button>
       </div>
       <p class="text-xs text-zinc-400 leading-relaxed">
-        Netlify 서버 환경변수(<code class="text-red-400">GEMINI_API_KEY</code>)가 설정되어 있으면 별도 입력 없이 자동으로 작동합니다. 로컬 브라우저에서 바로 테스트할 경우에만 아래에 키를 입력하세요.
+        Netlify 서버 환경변수(<code class="text-red-400">GEMINI_API_KEY</code>)가 설정되어 있으면 별도 입력 없이 자동으로 작동합니다. 직접 키를 입력해 테스트할 경우에만 아래에 입력하세요.
       </p>
       <input id="api-key-input" type="password" placeholder="AIzaSy..." class="w-full bg-zinc-950 border border-zinc-700 p-2.5 text-sm text-white focus:border-red-500 focus:outline-none" />
       <div class="flex justify-end gap-2">
-        <button id="btn-save-key" class="px-4 py-2 bg-red-600 hover:bg-red-500 text-white text-xs font-bold">저장하기</button>
+        <button type="button" id="btn-save-key" class="px-4 py-2 bg-red-600 hover:bg-red-500 text-white text-xs font-bold">저장하기</button>
       </div>
     </div>
   </div>
 
   <script>
-    // State
-    let currentTab = 'photo'; // 'photo' | 'text'
+    let currentTab = 'photo';
     let selectedPalette = 'tavira';
     let originalDataUrl = null;
     let generatedDataUrl = null;
@@ -311,7 +308,6 @@
       woodcut: 'Pure high-contrast black and white woodcut ink illustration on off-white paper, zero color, dramatic chiaroscuro with jagged lightning-bolt shadow edges.'
     };
 
-    // Elements
     const tabPhoto = document.getElementById('tab-photo');
     const tabText = document.getElementById('tab-text');
     const panelPhoto = document.getElementById('panel-photo');
@@ -326,6 +322,7 @@
     const inkVal = document.getElementById('ink-val');
     const btnGenerate = document.getElementById('btn-generate');
     const btnGenerateText = document.getElementById('btn-generate-text');
+    const statusBox = document.getElementById('status-box');
     const statusMsg = document.getElementById('status-msg');
     const canvasLabel = document.getElementById('canvas-label');
     const modeIndicator = document.getElementById('mode-indicator');
@@ -339,7 +336,18 @@
     const loadingOverlay = document.getElementById('loading-overlay');
     const btnDownload = document.getElementById('btn-download');
 
-    // Tab switching
+    function showStatus(msg, isError = false) {
+      statusBox.classList.remove('hidden', 'border-zinc-700', 'border-red-600', 'bg-red-950/50', 'bg-zinc-900');
+      if (isError) {
+        statusBox.classList.add('border-red-600', 'bg-red-950/50');
+        statusMsg.className = 'text-red-300 font-semibold break-words';
+      } else {
+        statusBox.classList.add('border-zinc-700', 'bg-zinc-900');
+        statusMsg.className = 'text-zinc-200 font-medium break-words';
+      }
+      statusMsg.textContent = msg;
+    }
+
     function switchTab(tab) {
       currentTab = tab;
       if (tab === 'photo') {
@@ -357,19 +365,18 @@
         btnGenerateText.textContent = '텍스트로 미뇰라 그림 그리기';
         modeIndicator.textContent = 'MODE: TEXT-TO-INK';
       }
+      statusBox.classList.add('hidden');
     }
 
     tabPhoto.addEventListener('click', () => switchTab('photo'));
     tabText.addEventListener('click', () => switchTab('text'));
 
-    // Prompt chips
     document.querySelectorAll('.prompt-chip').forEach(chip => {
       chip.addEventListener('click', () => {
         scenePrompt.value = chip.dataset.prompt;
       });
     });
 
-    // Palette selection
     document.querySelectorAll('.palette-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         document.querySelectorAll('.palette-btn').forEach(b => {
@@ -382,7 +389,6 @@
       });
     });
 
-    // Sliders
     shadowRange.addEventListener('input', () => {
       shadowVal.textContent = `${shadowRange.value}%`;
     });
@@ -392,12 +398,44 @@
       inkVal.textContent = inkLabels[inkRange.value];
     });
 
-    // File Upload
-    function handleFile(file) {
+    // Resize image to max 1024px JPEG so Netlify 6MB payload limit is never exceeded
+    function compressImage(file) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onerror = () => reject(new Error('파일을 읽을 수 없습니다.'));
+        reader.onload = (e) => {
+          const img = new Image();
+          img.onerror = () => reject(new Error('이미지를 불러올 수 없습니다.'));
+          img.onload = () => {
+            const maxDim = 1024;
+            let w = img.width;
+            let h = img.height;
+            if (w > maxDim || h > maxDim) {
+              if (w > h) {
+                h = Math.round((h * maxDim) / w);
+                w = maxDim;
+              } else {
+                w = Math.round((w * maxDim) / h);
+                h = maxDim;
+              }
+            }
+            const canvas = document.createElement('canvas');
+            canvas.width = w;
+            canvas.height = h;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(img, 0, 0, w, h);
+            resolve(canvas.toDataURL('image/jpeg', 0.85));
+          };
+          img.src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+      });
+    }
+
+    async function handleFile(file) {
       if (!file || !file.type.startsWith('image/')) return;
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        originalDataUrl = e.target.result;
+      try {
+        originalDataUrl = await compressImage(file);
         generatedDataUrl = null;
         emptyState.classList.add('hidden');
         compareWrap.classList.add('hidden');
@@ -406,9 +444,10 @@
         btnClearPhoto.classList.remove('hidden');
         btnDownload.classList.add('hidden');
         canvasLabel.textContent = '원본 이미지 준비 완료';
-        statusMsg.textContent = '';
-      };
-      reader.readAsDataURL(file);
+        statusBox.classList.add('hidden');
+      } catch (err) {
+        showStatus(err.message, true);
+      }
     }
 
     fileInput.addEventListener('change', (e) => handleFile(e.target.files[0]));
@@ -432,7 +471,6 @@
       canvasLabel.textContent = '작업 캔버스 대기 중';
     });
 
-    // Build Mignola Style Prompt
     function buildMignolaPrompt(userText) {
       const shadowPct = shadowRange.value;
       const inkLevel = inkRange.value === '3' ? 'heavy jagged sawtooth hatching and floating ink-spore blobs' : inkRange.value === '2' ? 'crisp angular sawtooth hatching' : 'clean minimal angular ink contours';
@@ -454,74 +492,47 @@
       }
     }
 
-    // API Call
     async function generateArtwork() {
       if (currentTab === 'photo' && !originalDataUrl) {
-        statusMsg.textContent = '먼저 변환할 원본 사진을 업로드해 주세요.';
+        showStatus('먼저 변환할 원본 사진을 업로드해 주세요.', true);
         return;
       }
       if (currentTab === 'text' && !scenePrompt.value.trim()) {
-        statusMsg.textContent = '그릴 장면의 설명을 텍스트로 입력해 주세요.';
+        showStatus('그릴 장면의 설명을 텍스트로 입력해 주세요.', true);
         return;
       }
 
       loadingOverlay.classList.remove('hidden');
       btnGenerate.disabled = true;
-      statusMsg.textContent = 'AI 잉킹 엔진이 작화를 진행 중입니다...';
+      showStatus('AI 잉킹 엔진이 작화를 진행 중입니다... (약 10~20초 소요)', false);
 
       const prompt = buildMignolaPrompt(scenePrompt.value.trim());
       const localKey = localStorage.getItem('GEMINI_API_KEY') || '';
 
       try {
-        let imageBase64 = null;
-        let mimeType = 'image/png';
+        const res = await fetch('/.netlify/functions/generate', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            prompt,
+            imageDataUrl: currentTab === 'photo' ? originalDataUrl : null,
+            apiKey: localKey || undefined
+          })
+        });
 
-        const isPreviewEnv = window.location.protocol === 'blob:' || window.location.protocol === 'file:';
-
-        if (!isPreviewEnv) {
-          // Call Netlify Serverless Function
-          const res = await fetch('/.netlify/functions/generate', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              prompt,
-              imageDataUrl: currentTab === 'photo' ? originalDataUrl : null,
-              apiKey: localKey || undefined
-            })
-          });
-          const data = await res.json();
-          if (!res.ok) throw new Error(data.error || '서버 생성 오류가 발생했습니다.');
-          imageBase64 = data.imageBase64;
-          mimeType = data.mimeType || 'image/png';
-        } else {
-          // Direct browser fallback if local API key is set
-          if (!localKey) {
-            throw new Error('상단 [API 키 설정]에서 Gemini API 키를 입력하거나 Netlify에 배포 후 이용해 주세요.');
-          }
-          const parts = [{ text: prompt }];
-          if (currentTab === 'photo' && originalDataUrl) {
-            const match = originalDataUrl.match(/^data:(image\/\w+);base64,(.+)$/);
-            if (match) {
-              parts.push({ inlineData: { mimeType: match[1], data: match[2] } });
-            }
-          }
-          const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-image:generateContent?key=${encodeURIComponent(localKey)}`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              contents: [{ parts }],
-              generationConfig: { responseModalities: ['IMAGE'] }
-            })
-          });
-          const data = await res.json();
-          if (!res.ok) throw new Error(data.error?.message || 'Gemini API 오류');
-          const imgPart = data.candidates?.[0]?.content?.parts?.find(p => p.inlineData);
-          if (!imgPart) throw new Error('이미지 데이터를 반환받지 못했습니다.');
-          imageBase64 = imgPart.inlineData.data;
-          mimeType = imgPart.inlineData.mimeType || 'image/png';
+        const rawText = await res.text();
+        let data = {};
+        try {
+          data = JSON.parse(rawText);
+        } catch (e) {
+          throw new Error(`서버 응답 오류 (HTTP ${res.status}): ${rawText.slice(0, 120)}`);
         }
 
-        generatedDataUrl = `data:${mimeType};base64,${imageBase64}`;
+        if (!res.ok) {
+          throw new Error(data.error || `서버 생성 오류 (HTTP ${res.status})`);
+        }
+
+        generatedDataUrl = `data:${data.mimeType || 'image/png'};base64,${data.imageBase64}`;
         emptyState.classList.add('hidden');
         btnDownload.classList.remove('hidden');
 
@@ -539,9 +550,9 @@
           resultImg.classList.remove('hidden');
           canvasLabel.textContent = '텍스트 아트워크 생성 완료';
         }
-        statusMsg.textContent = '완료되었습니다! 우측 상단 버튼으로 저장할 수 있습니다.';
+        showStatus('완료되었습니다! 우측 상단 버튼으로 저장할 수 있습니다.', false);
       } catch (err) {
-        statusMsg.textContent = `오류: ${err.message}`;
+        showStatus(`오류: ${err.message}`, true);
       } finally {
         loadingOverlay.classList.add('hidden');
         btnGenerate.disabled = false;
@@ -550,7 +561,6 @@
 
     btnGenerate.addEventListener('click', generateArtwork);
 
-    // Comparison Slider Drag
     function updateSlider(clientX) {
       const rect = compareWrap.getBoundingClientRect();
       let pct = ((clientX - rect.left) / rect.width) * 100;
@@ -569,7 +579,6 @@
       if (isDraggingSlider && e.touches[0]) updateSlider(e.touches[0].clientX);
     });
 
-    // Download
     btnDownload.addEventListener('click', () => {
       if (!generatedDataUrl) return;
       const a = document.createElement('a');
@@ -578,7 +587,6 @@
       a.click();
     });
 
-    // API Modal
     const apiModal = document.getElementById('api-modal');
     const apiKeyInput = document.getElementById('api-key-input');
     document.getElementById('btn-api-modal').addEventListener('click', () => {
@@ -589,7 +597,7 @@
     document.getElementById('btn-save-key').addEventListener('click', () => {
       localStorage.setItem('GEMINI_API_KEY', apiKeyInput.value.trim());
       apiModal.classList.add('hidden');
-      statusMsg.textContent = 'API 키가 브라우저에 저장되었습니다.';
+      showStatus('API 키가 브라우저에 저장되었습니다.', false);
     });
   </script>
 </body>
